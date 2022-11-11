@@ -1,9 +1,7 @@
 # iRUBEN
 my lovely landing site
 
-has css animations for hover effects
-
-gonna add some social links soon
+has css animations for hover effect
 
 https://rubentelfer.com
 
