@@ -1,7 +1,7 @@
 # iRUBEN
 my lovely landing site
 
-has css animations for hover effect
+has css animations for hover effect and uses css for moving background
 
 https://rubentelfer.com
 
