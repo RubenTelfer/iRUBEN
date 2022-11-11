@@ -1,0 +1,174 @@
+<html>
+   <head>
+    <script src="https://kit.fontawesome.com/6d2bdb4e6d.js" crossorigin="anonymous"></script>
+    <link href="https://rubentelfer.com">
+    <title>RUBEN!</title>
+    <style>
+        .main {
+            width: 30%;
+            height: 40%;
+            font-family: "ginto";
+            position: fixed;
+            border-radius: 10px;
+            text-align: end;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .parent {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        .description {
+            font-family: "ginto-thin";
+            color: rgba(255, 255, 255, 0.698);
+            text-align: left;
+            font-size: 18;
+            text-decoration: none;
+        }
+
+        @font-face {
+            font-family: "ginto";
+            font-display: swap;
+            font-style: normal;
+            src: url(fonts/ginto.woff2) format("woff2")
+        }
+
+        @font-face {
+            font-family: "ginto-thin";
+            font-display: swap;
+            font-style: normal;
+            src: url(fonts/gintothin.woff2) format("woff2")
+        }
+
+        h1 {
+            font-family: "ginto";
+            color: white;
+            font-size: 50;
+            text-align: left;
+        }
+
+        body {
+            background-color: 	#282b30;
+            background-size: 2400;
+        }
+
+        .text-red {
+            font-family: "ginto-thin";
+            color: #ED4245;
+            font-size: 18;
+        }
+
+        .text-blue {
+            font-family: inherit;
+            color: #5865F2;
+            font-size: inherit;
+            text-decoration: none;
+            box-shadow: inset 0 0 0 0 #5865F2;
+            transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+        }
+
+        .text-blue:hover {
+            box-shadow: inset 100px 0 0 0 #5865F2;
+            color: white;
+        }
+
+        .text-yellow {
+            font-family: inherit;
+            color: #FEE75C;
+            font-size: inherit;
+        }
+
+        .navbar {
+            padding-right: 10px;
+            color: rgba(255, 255, 255, 0.698);
+            transition: color .3s ease-in-out;
+        }
+
+        .navbar:hover {
+            color: white;
+        }
+
+        .a1 {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.a1::before,
+.a1::after {
+ content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+.a1::before {
+  background-color: #54b3d6;
+  height: 2px;
+  bottom: 0;
+  transform-origin: 100% 50%;
+  transform: scaleX(0);
+  transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.a1::after {
+  content: attr(data-replace);
+  height: 100%;
+  top: 0;
+  transform-origin: 100% 50%;
+  transform: translate3d(200%, 0, 0);
+  transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+  color: #54b3d6;
+}
+
+.a1:hover::before {
+  transform-origin: 0% 50%;
+  transform: scaleX(1);
+}
+.a1:hover::after {
+  transform: translate3d(0, 0, 0);
+}
+
+.a1 span {
+  display: inline-block;
+  transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.a1:hover span {
+  transform: translate3d(-200%, 0, 0);
+}
+
+/* Presentational Styles */
+body {
+  display: grid;
+  font-family: 'Poppins', sans-serif;
+  font-size: 27px;
+  line-height: 1.5;
+  height: 100vh;
+  place-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: #18272F;
+  font-weight: 700;
+  vertical-align: top;
+}
+    </style>
+   </head>
+
+   <body>
+    <div class="parent">
+        <div class="main">
+            <h1>Hey, I'm <a class="a1 text-yellow"data-replace="Ruben"><span>Ruben</span></a>!</h1>
+            <div class="description">I'm a programmer with over 2 years of experience, my commissions are currently <span class="text-red">closed</span>, due to my recent employment with <a class="text-blue" href="https://www.roblox.com/groups/5815889/MetaMethod-Development#!/about">MetaMethod</a>.</div>
+            <p></p> 
+        </div>
+    </div>
+   </body>
+</html>
