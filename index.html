@@ -85,142 +85,150 @@
             font-size: inherit;
         }
 
-        .navbar {
-            padding-right: 10px;
-            color: rgba(255, 255, 255, 0.698);
-            transition: color .3s ease-in-out;
+              .a1 {
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+      }
+
+      .a1::before,
+      .a1::after {
+      content: '';
+        position: absolute;
+        width: 100%;
+        left: 0;
+      }
+      .a1::before {
+        background-color: #54b3d6;
+        height: 2px;
+        bottom: 0;
+        transform-origin: 100% 50%;
+        transform: scaleX(0);
+        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+      .a1::after {
+        content: attr(data-replace);
+        height: 100%;
+        top: 0;
+        transform-origin: 100% 50%;
+        transform: translate3d(200%, 0, 0);
+        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+        color: #54b3d6;
+      }
+
+      .a1:hover::before {
+        transform-origin: 0% 50%;
+        transform: scaleX(1);
+      }
+      .a1:hover::after {
+        transform: translate3d(0, 0, 0);
+      }
+
+      .a1 span {
+        display: inline-block;
+        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+
+      .a1:hover span {
+        transform: translate3d(-200%, 0, 0);
+      }
+
+      /* Presentational Styles */
+      body {
+        display: grid;
+        font-family: 'Poppins', sans-serif;
+        font-size: 27px;
+        line-height: 1.5;
+        height: 100vh;
+        place-items: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: #18272F;
+        font-weight: 700;
+        vertical-align: top;
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 10;
+        width: 100%;
+        color: rgba(255, 255, 255, 0.698);;
+        text-align: center;
+        font-family: "ginto-thin";
+        font-size: 15;
+      }
+
+      html {
+        height:100%;
+      }
+
+      body {
+        margin:0;
+      }
+
+      .bg {
+        animation:slide 20s ease-in-out infinite alternate;
+        background-image: linear-gradient(-60deg, rgb(25, 25, 25) 50%, rgb(56, 56, 56) 50%);
+        bottom:0;
+        left:-50%;
+        opacity:.5;
+        position:fixed;
+        right:-50%;
+        top:0;
+        z-index:-1;
+      }
+
+      .bg2 {
+        animation-direction:alternate-reverse;
+        animation-duration:15s;
+      }
+
+      .bg3 {
+        animation-duration:13s;
+      }
+
+      .content {
+        background-color:rgba(255,255,255,.8);
+        border-radius:.25em;
+        box-shadow:0 0 .25em rgba(0,0,0,.25);
+        box-sizing:border-box;
+        left:50%;
+        padding:10vmin;
+        position:fixed;
+        text-align:center;
+        top:50%;
+        transform:translate(-50%, -50%);
+      }
+
+      @keyframes slide {
+        0% {
+          transform:translateX(-25%);
         }
-
-        .navbar:hover {
-            color: white;
+        100% {
+          transform:translateX(25%);
         }
+      }
 
-        .a1 {
-  overflow: hidden;
-  position: relative;
-  display: inline-block;
-}
+      .github, .twitter, .linkedin {
+                  padding-right: 10px;
+                  color: rgba(255, 255, 255, 0.698);
+                  transition: color .3s ease-in-out;
+              }
 
-.a1::before,
-.a1::after {
- content: '';
-  position: absolute;
-  width: 100%;
-  left: 0;
-}
-.a1::before {
-  background-color: #54b3d6;
-  height: 2px;
-  bottom: 0;
-  transform-origin: 100% 50%;
-  transform: scaleX(0);
-  transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-}
-.a1::after {
-  content: attr(data-replace);
-  height: 100%;
-  top: 0;
-  transform-origin: 100% 50%;
-  transform: translate3d(200%, 0, 0);
-  transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-  color: #54b3d6;
-}
+      .github:hover {
+            color: #6e5494;
+      }
 
-.a1:hover::before {
-  transform-origin: 0% 50%;
-  transform: scaleX(1);
-}
-.a1:hover::after {
-  transform: translate3d(0, 0, 0);
-}
+      .twitter:hover {
+            color: #1DA1F2;
+      }
 
-.a1 span {
-  display: inline-block;
-  transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.a1:hover span {
-  transform: translate3d(-200%, 0, 0);
-}
-
-/* Presentational Styles */
-body {
-  display: grid;
-  font-family: 'Poppins', sans-serif;
-  font-size: 27px;
-  line-height: 1.5;
-  height: 100vh;
-  place-items: center;
-}
-
-a {
-  text-decoration: none;
-  color: #18272F;
-  font-weight: 700;
-  vertical-align: top;
-}
-
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 10;
-  width: 100%;
-  color: rgba(255, 255, 255, 0.698);;
-  text-align: center;
-  font-family: "ginto-thin";
-  font-size: 15;
-}
-
-html {
-  height:100%;
-}
-
-body {
-  margin:0;
-}
-
-.bg {
-  animation:slide 20s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, rgb(25, 25, 25) 50%, rgb(56, 56, 56) 50%);
-  bottom:0;
-  left:-50%;
-  opacity:.5;
-  position:fixed;
-  right:-50%;
-  top:0;
-  z-index:-1;
-}
-
-.bg2 {
-  animation-direction:alternate-reverse;
-  animation-duration:15s;
-}
-
-.bg3 {
-  animation-duration:13s;
-}
-
-.content {
-  background-color:rgba(255,255,255,.8);
-  border-radius:.25em;
-  box-shadow:0 0 .25em rgba(0,0,0,.25);
-  box-sizing:border-box;
-  left:50%;
-  padding:10vmin;
-  position:fixed;
-  text-align:center;
-  top:50%;
-  transform:translate(-50%, -50%);
-}
-
-@keyframes slide {
-  0% {
-    transform:translateX(-25%);
-  }
-  100% {
-    transform:translateX(25%);
-  }
-}
+      .linkedin:hover {
+            color: #0A66C2;
+      }
 
     </style>
    </head>
@@ -238,9 +246,9 @@ body {
             <div class="description">I'm a programmer with over 2 years of experience, my commissions are currently <span class="text-red">closed</span>, due to my employment with <a class="text-blue" href="https://www.roblox.com/groups/5815889/MetaMethod-Development#!/about">MetaMethod</a>. I am experienced with multiple programming languages including LUAU and JavaScript.</div>
             <p></p>
             <nav>
-                <a href="https://github.com/RubenTelfer"><i class="navbar fa-brands fa-github"></i></a>
-                <a href="https://twitter.com/rubenntelfer"><i class="navbar fa-brands fa-twitter"></i></a>
-                <a href="https://www.linkedin.com/in/rubentelfer/"><i class="navbar fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/RubenTelfer"><i class="github fa-brands fa-github"></i></a>
+                <a href="https://twitter.com/rubenntelfer"><i class="twitter fa-brands fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/rubentelfer/"><i class="linkedin fa-brands fa-linkedin"></i></a>
             </nav>
         </div>
     </div>
