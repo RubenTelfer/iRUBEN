@@ -40,6 +40,7 @@
             text-align: left;
             font-size: 30;
             text-decoration: none;
+            padding-left: 10;
         }
 
         @font-face {
@@ -170,6 +171,20 @@
             color: #0A66C2;
       }
 
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: left
+      }
+
+      img {
+        max-width: 100%
+      }
+
+      .image {
+        flex-basis: 5%;
+      }
+
     </style>
    </head>
    
@@ -179,8 +194,13 @@
            <!--<img src="images/3c3772c21d0fb394c563b6176778ec43.svg" alt="" width="168" height="156">-->
             
             <h1>Hi i'm <a class="text-yellow">Ruben</a></h1>
-            <div class="description_bold"> 
-              MetaMethod Programmer
+            <div class="container">
+              <div class="image">
+                <img src="./images/Logo_2_PNG_1-2.png">
+              </div>
+              <div class="description_bold"> 
+                MetaMethod Programmer
+              </div>
             </div>
             <div class="description"> 
               Currently working on <a class="text-blue" href="https://www.roblox.com/games/5897938254/Site-006-RP">Site 006</a>
