@@ -1,7 +1,7 @@
 # iRUBEN
 my lovely landing site
 
-has css animations for hover effect and uses css for moving background
+uses lanyard for the bio section and has some simple hover effects for the social links
 
 https://rubentelfer.com
 
