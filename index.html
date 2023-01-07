@@ -79,7 +79,6 @@
 
         .text-yellow {
             font-family: inherit;
-            color: #FEE75C;
             font-size: inherit;
         }
 
@@ -174,6 +173,16 @@
           return response.json();
         }).then(data => {
           console.log(data)
+          if (data.data.discord_status == "online") {
+            document.querySelector("span.text-yellow").style = "color: #42855B"
+          } else if (data.data.discord_status == "idle") {
+            document.querySelector("span.text-yellow").style = "color: #FFD56F"
+          } else if (data.data.discord_status == "dnd") {
+            document.querySelector("span.text-yellow").style = "color: #DC3535"
+          } else if (data.data.discord_status == "offline") {
+            document.querySelector("span.text-yellow").style = "color: #4B56D2"
+          } 
+
           if (!data.data.activities[0]) {
             document.querySelector("div.bio-box").style = "display: none;"
           } else {
