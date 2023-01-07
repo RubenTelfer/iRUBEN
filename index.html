@@ -38,13 +38,29 @@
             flex-grow: 1;
             margin-top: 2rem;
             max-width: 20rem;
-            border-color: rgb(255, 0, 0);
             border-radius: 7px;
             border: 2px solid rgb(51, 51, 51);
             align-items: center;
             justify-content: left
         }
 
+        .status-box { 
+            flex-grow: 1;
+            margin-top: 0.8rem;
+            max-width: 20rem;
+            border-radius: 7px;
+            border: 2px solid rgb(51, 51, 51);
+        }
+
+        .align-box {
+            display: flex;
+            flex-grow: 1;
+            margin-top: 0.1rem;
+            max-width: 20rem;            
+            align-items: center;
+            justify-content: left
+        }
+        
         h1 {
             font-size: 5rem;
             line-height: 0;
@@ -117,11 +133,39 @@
             max-width: 1.5rem;
         }
 
+        .status-image {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.6rem;
+            max-width: 1.5rem;
+        }
+
         .bio-text {
             margin-left: 0.5rem;
             font-family: "ginto-thin";
             color: rgba(255, 255, 255, 0.698);
             font-size: 1.1rem;           
+        }
+
+        .status-text-box {    
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;  
+        }
+
+        .s-details, .s-state {
+            margin-left: 0.5rem;
+            font-family: "ginto-thin";
+            color: rgba(255, 255, 255, 0.698);
+            font-size: 1rem;           
+        }
+
+        .status-playing-thing {
+            margin-top: 0.5rem;
+            margin-left: 0.5rem;
+            font-family: "ginto";
+            color: rgba(255, 255, 255, 0.698);
+            font-size: 1rem;           
+            font-weight: 0;
         }
     </style>
     <script type="text/javascript">
@@ -130,8 +174,41 @@
           return response.json();
         }).then(data => {
           console.log(data)
-          document.querySelector("img.status-icon").src = `https://cdn.discordapp.com/emojis/${data.data.activities[0].emoji.id}.webp?size=240&quality=lossless`
-          document.querySelector("div.bio-text").innerHTML = data.data.activities[0].state
+          if (!data.data.activities[0]) {
+            document.querySelector("div.bio-box").style = "display: none;"
+          } else {
+            if (data.data.activities[0].emoji) {
+                document.querySelector("img.status-icon").src = `https://cdn.discordapp.com/emojis/${data.data.activities[0].emoji.id}.webp?size=240&quality=lossless`
+            } else {
+                document.querySelector('img.status-icon').style = "display: none;"
+            }
+            
+            if (data.data.activities[0].state) {
+                document.querySelector("div.bio-text").innerHTML = data.data.activities[0].state
+            } else {
+                document.querySelector("div.bio-text").style = "display: none;"
+            }
+          }
+          
+          if (!data.data.activities[1]) {
+            document.querySelector("div.status-box").style = "display: none;"
+          } else {
+            document.querySelector("img.status-image").src = `https://cdn.discordapp.com/app-assets/${data.data.activities[1].application_id}/${data.data.activities[1].assets.large_image}.png`
+            document.querySelector("div.s-details").innerHTML = data.data.activities[1].details
+            document.querySelector("div.s-state").innerHTML = data.data.activities[1].state
+            let imageId = data.data.activities[1].assets.large_image
+            imageId = imageId.split("mp:external/")
+
+            let statusImage = `https://media.discordapp.net/${imageId[1]}`
+            console.log(statusImage)
+
+            if (data.data.activities[1].name == "Apple Music") {
+                document.querySelector("div.status-playing-thing").innerHTML = "Listening to Apple Music"
+            } else {
+                document.querySelector("div.status-playing-thing").innerHTML = `Playing ${data.data.activities[1].name}`
+            }
+            
+          }
         }).catch(err => {
           console.log(err)
         });
@@ -147,11 +224,21 @@
                         <div style="float: left">
                             <img class="status-icon">
                         </div>
-                        <div class="bio-text">
-                            
-                        </div>
+                        <div class="bio-text"></div>
                     </div>
                     
+                    <div class="status-box">
+                        <div class="status-playing-thing"></div>
+                        <div class="align-box">
+                            <div style="float: left">
+                                <img class="status-image">
+                            </div>
+                            <div class="status-text-box">
+                                <div class="s-details"></div>
+                                <div class="s-state"></div>
+                            </div>
+                        </div>                      
+                    </div>                    
                 </section>
             </main>
             <nav>
