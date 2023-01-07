@@ -1,0 +1,163 @@
+<html>
+    <script src="https://kit.fontawesome.com/1486c19ca3.js" crossorigin="anonymous"></script>
+    <link href="https://rubentelfer.com">
+    <title>RUBEN!</title>
+    <style>
+        @font-face {
+            font-family: "ginto";
+            font-display: swap;
+            font-style: normal;
+            src: url(fonts/ginto.woff2) format("woff2")
+        }
+
+        @font-face {
+            font-family: "ginto-thin";
+            font-display: swap;
+            font-style: normal;
+            src: url(fonts/gintothin.woff2) format("woff2")
+        }
+
+        body {
+            background-color: 	rgb(25, 25, 25);
+            display: flex;
+        }
+
+        .main-box {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            margin: auto;
+            max-width: 42rem;
+            place-content: center;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .bio-box {
+            display: flex;
+            flex-grow: 1;
+            margin-top: 2rem;
+            max-width: 20rem;
+            border-color: rgb(255, 0, 0);
+            border-radius: 7px;
+            border: 2px solid rgb(51, 51, 51);
+            align-items: center;
+            justify-content: left
+        }
+
+        h1 {
+            font-size: 5rem;
+            line-height: 0;
+            font-family: "ginto";
+            color: white;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            line-height: 0rem;
+            font-family: "ginto-thin";
+            color: white;
+            font-weight: 300;
+            margin-top: 0rem;
+        }
+
+        .text-yellow {
+            font-family: inherit;
+            color: #FEE75C;
+            font-size: inherit;
+        }
+
+        .marker {
+            font-size: 1.5rem;
+            line-height: 0rem;
+            color: white;
+            margin-top: 0rem;
+            padding-right: 0.5rem;
+        }
+
+        .github, .twitter{
+            color: rgba(255, 255, 255, 0.698);
+            transition: color .3s ease-in-out;
+            font-size: 1.5rem;
+            line-height: 2rem
+        }
+
+        .twitter {
+            padding-left: 1rem;
+        }
+
+        .github:hover {
+            color: #6e5494;
+        }
+
+        .twitter:hover {
+            color: #1DA1F2;
+        }
+
+        nav {
+            grid-gap: 1rem;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        a {
+            color: white;
+            transition: color .3s ease-in-out;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #7CB5F0;
+        }
+
+        img {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.6rem;
+            max-width: 1.5rem;
+        }
+
+        .bio-text {
+            margin-left: 0.5rem;
+            font-family: "ginto-thin";
+            color: rgba(255, 255, 255, 0.698);
+            font-size: 1.1rem;           
+        }
+    </style>
+    <script type="text/javascript">
+        var apiUrl = 'https://api.lanyard.rest/v1/users/660475556608999444';
+        fetch(apiUrl).then(response => {
+          return response.json();
+        }).then(data => {
+          console.log(data)
+          document.querySelector("img.status-icon").src = `https://cdn.discordapp.com/emojis/${data.data.activities[0].emoji.id}.webp?size=240&quality=lossless`
+          document.querySelector("div.bio-text").innerHTML = data.data.activities[0].state
+        }).catch(err => {
+          console.log(err)
+        });
+    </script>
+    <body>
+        <div class="main-box">
+            <main>
+                <section>
+                    <h1>Hi i'm <span class=text-yellow>Ruben</span>!</h1>  
+                    <h2><i class="marker fa fa-map-marker" aria-hidden="true"></i>Programmer for <a href="https://metamethod.pt">MetaMethod</a></h2>    
+                    <div id="apiResponse"></div>
+                    <div class="bio-box">
+                        <div style="float: left">
+                            <img class="status-icon">
+                        </div>
+                        <div class="bio-text">
+                            
+                        </div>
+                    </div>
+                    
+                </section>
+            </main>
+            <nav>
+                <a href="https://github.com/RubenTelfer"><i class="github fa-brands fa-github"></i></a>
+                <a href="https://twitter.com/rubenntelfer"><i class="twitter fa-brands fa-twitter"></i></a>
+            </nav>
+        </div>
+    </body>
+</html>
