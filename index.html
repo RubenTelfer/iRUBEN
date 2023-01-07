@@ -19,7 +19,36 @@
 
         body {
             background-color: 	rgb(25, 25, 25);
+            display: flex;            
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 3rem; 
             display: flex;
+            flex-direction: column;
+            place-content: top;
+            margin: auto;
+            justify-content: left;
+        }
+
+        .footer-text {
+            font-size: 0.3rem;
+            line-height: 0rem;
+            font-family: "ginto-thin";
+            color: white;
+            font-weight: 300;
+            margin-top: 0rem;
+        }
+
+        .footer-marker {
+            font-size: 0.3rem;
+            line-height: 0rem;
+            color: white;
+            margin-top: 0rem;
+            padding-right: 0.5rem;
         }
 
         .main-box {
@@ -168,58 +197,65 @@
         }
     </style>
     <script type="text/javascript">
-        var apiUrl = 'https://api.lanyard.rest/v1/users/660475556608999444';
-        fetch(apiUrl).then(response => {
-          return response.json();
-        }).then(data => {
-          console.log(data)
-          if (data.data.discord_status == "online") {
-            document.querySelector("span.text-yellow").style = "color: #42855B"
-          } else if (data.data.discord_status == "idle") {
-            document.querySelector("span.text-yellow").style = "color: #FFD56F"
-          } else if (data.data.discord_status == "dnd") {
-            document.querySelector("span.text-yellow").style = "color: #DC3535"
-          } else if (data.data.discord_status == "offline") {
-            document.querySelector("span.text-yellow").style = "color: #4B56D2"
-          } 
+        function callApi() {
+            var apiUrl = 'https://api.lanyard.rest/v1/users/660475556608999444';
+            fetch(apiUrl).then(response => {
+            return response.json();
+            }).then(data => {
+            console.log(data)
+            if (data.data.discord_status == "online") {
+                document.querySelector("span.text-yellow").style = "color: #42855B"
+            } else if (data.data.discord_status == "idle") {
+                document.querySelector("span.text-yellow").style = "color: #FFD56F"
+            } else if (data.data.discord_status == "dnd") {
+                document.querySelector("span.text-yellow").style = "color: #DC3535"
+            } else if (data.data.discord_status == "offline") {
+                document.querySelector("span.text-yellow").style = "color: #4B56D2"
+            } 
 
-          if (!data.data.activities[0]) {
-            document.querySelector("div.bio-box").style = "display: none;"
-          } else {
-            if (data.data.activities[0].emoji) {
-                document.querySelector("img.status-icon").src = `https://cdn.discordapp.com/emojis/${data.data.activities[0].emoji.id}.webp?size=240&quality=lossless`
+            if (!data.data.activities[0]) {
+                document.querySelector("div.bio-box").style = "display: none;"
             } else {
-                document.querySelector('img.status-icon').style = "display: none;"
+                if (data.data.activities[0].emoji) {
+                    document.querySelector("img.status-icon").src = `https://cdn.discordapp.com/emojis/${data.data.activities[0].emoji.id}.webp?size=240&quality=lossless`
+                } else {
+                    document.querySelector('img.status-icon').style = "display: none;"
+                }
+                
+                if (data.data.activities[0].state) {
+                    document.querySelector("div.bio-text").innerHTML = data.data.activities[0].state
+                } else {
+                    document.querySelector("div.bio-text").style = "display: none;"
+                }
             }
             
-            if (data.data.activities[0].state) {
-                document.querySelector("div.bio-text").innerHTML = data.data.activities[0].state
+            if (!data.data.activities[1]) {
+                document.querySelector("div.status-box").style = "display: none;"
             } else {
-                document.querySelector("div.bio-text").style = "display: none;"
-            }
-          }
-          
-          if (!data.data.activities[1]) {
-            document.querySelector("div.status-box").style = "display: none;"
-          } else {
-            
-            document.querySelector("div.s-details").innerHTML = data.data.activities[1].details
-            document.querySelector("div.s-state").innerHTML = data.data.activities[1].state
-            let imageId = data.data.activities[1].assets.large_image
-            imageId = imageId.split("mp:external/")
-            document.querySelector("img.status-image").src =  `https://media.discordapp.net/external/${imageId[1]}`
-            console.log(`https://media.discordapp.net/external/${imageId}`)
+                
+                document.querySelector("div.s-details").innerHTML = data.data.activities[1].details
+                document.querySelector("div.s-state").innerHTML = data.data.activities[1].state
+                let imageId = data.data.activities[1].assets.large_image
+                imageId = imageId.split("mp:external/")
+                document.querySelector("img.status-image").src =  `https://media.discordapp.net/external/${imageId[1]}`
+                console.log(`https://media.discordapp.net/external/${imageId}`)
 
-            if (data.data.activities[1].name == "Apple Music") {
-                document.querySelector("div.status-playing-thing").innerHTML = "Listening to Apple Music"
-            } else {
-                document.querySelector("div.status-playing-thing").innerHTML = `Playing ${data.data.activities[1].name}`
+                if (data.data.activities[1].name == "Apple Music") {
+                    document.querySelector("div.status-playing-thing").innerHTML = "Listening to Apple Music"
+                } else {
+                    document.querySelector("div.status-playing-thing").innerHTML = `Playing ${data.data.activities[1].name}`
+                }
+                
             }
-            
-          }
-        }).catch(err => {
-          console.log(err)
-        });
+            }).catch(err => {
+            console.log(err)
+            });
+        }
+        callApi()
+
+        window.setInterval(function(){
+            callApi()
+        }, 5000);               
     </script>
     <body>
         <div class="main-box">
@@ -255,4 +291,5 @@
             </nav>
         </div>
     </body>
+    
 </html>
