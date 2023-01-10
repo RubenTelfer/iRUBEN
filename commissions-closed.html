@@ -133,6 +133,7 @@
         .text-yellow {
             font-family: inherit;
             font-size: inherit;
+            color: #ED4245;
         }
 
         .marker {
@@ -155,7 +156,7 @@
         }
 
         .github:hover {
-            color: #6e5494;
+            color: white;
         }
 
         .twitter:hover {
@@ -193,10 +194,11 @@
         }
 
         .bio-text {
-            margin-left: 0.5rem;
+            margin-left: 0rem;
             font-family: "ginto-thin";
             color: rgba(255, 255, 255, 0.698);
-            font-size: 1.1rem;           
+            font-size: 1.1rem;
+            margin-top: 2rem;        
         }
 
         .status-text-box {    
@@ -220,100 +222,19 @@
             font-weight: 0;
         }
     </style>
-    <script type="text/javascript">
-        function callApi() {
-            var apiUrl = 'https://api.lanyard.rest/v1/users/660475556608999444';
-            fetch(apiUrl).then(response => {
-            return response.json();
-            }).then(data => {
-            console.log(data)
-            if (data.data.discord_status == "online") {
-                document.querySelector("span.text-yellow").style = "color: #42855B"
-            } else if (data.data.discord_status == "idle") {
-                document.querySelector("span.text-yellow").style = "color: #FFD56F"
-            } else if (data.data.discord_status == "dnd") {
-                document.querySelector("span.text-yellow").style = "color: #DC3535"
-            } else if (data.data.discord_status == "offline") {
-                document.querySelector("span.text-yellow").style = "color: #4B56D2"
-            } 
-
-            if (!data.data.activities[0]) {
-                document.querySelector("div.bio-box").style = "display: none;"
-            } else {
-                if (data.data.activities[0].emoji) {
-                    document.querySelector("img.status-icon").src = `https://cdn.discordapp.com/emojis/${data.data.activities[0].emoji.id}.webp?size=240&quality=lossless`
-                } else {
-                    document.querySelector('img.status-icon').style = "display: none;"
-                }
-                
-                if (data.data.activities[0].state) {
-                    document.querySelector("div.bio-text").innerHTML = data.data.activities[0].state
-                } else {
-                    //document.querySelector("div.bio-text").style = "display: none;"
-                }
-            }
-            
-            if (!data.data.activities[1]) {
-                document.querySelector("div.status-box").style = "display: none;"
-            } else {
-                
-                document.querySelector("div.s-details").innerHTML = data.data.activities[1].details
-                document.querySelector("div.s-state").innerHTML = data.data.activities[1].state
-                let imageId = data.data.activities[1].assets.large_image
-                imageId = imageId.split("mp:external/")
-                document.querySelector("img.status-image").src =  `https://media.discordapp.net/external/${imageId[1]}`
-                console.log(`https://media.discordapp.net/external/${imageId}`)
-
-                if (data.data.activities[1].name == "Apple Music") {
-                    document.querySelector("div.status-playing-thing").innerHTML = "Listening to Apple Music"
-                } else {
-                    document.querySelector("div.status-playing-thing").innerHTML = `Playing ${data.data.activities[1].name}`
-                }
-                
-            }
-            }).catch(err => {
-            console.log(err)
-            });
-        }
-        callApi()
-
-        window.setInterval(function(){
-            callApi()
-        }, 5000);               
-    </script>
     <body>
         <div class="main-box">
             <main>
                 <section>
                     <!--<h2 class="commissions-text"><i class="commissions-marker fa-solid fa-door-closed"></i>Commissions Closed</a></h2>  --> 
-                    <h1>Hi i'm <span class=text-yellow>Ruben</span>!</h1>  
-                    <h2><i class="marker fa fa-map-marker" aria-hidden="true"></i>Programmer for <a href="https://metamethod.pt">MetaMethod</a></h2>      
-                    <div id="apiResponse"></div>
-                    <div class="bio-box">
-                        <div style="float: left">
-                            <img class="status-icon">
-                        </div>
-                        <div class="bio-text"></div>
-                    </div>
-                    
-                    <div class="status-box">
-                        <div class="status-playing-thing"></div>
-                        <div class="align-box">
-                            <div style="float: left">
-                                <img class="status-image">
-                            </div>
-                            <div class="status-text-box">
-                                <div class="s-details"></div>
-                                <div class="s-state"></div>
-                            </div>
-                        </div>                      
-                    </div>
+                    <h1><span class=text-yellow>Closed</span>!</h1>  
+                    <h2><i class="marker fa-solid fa-door-closed"></i>My commissions are closed.</h2>      
+                    <div class="bio-text">Sorry for the inconvinience, this is due to my employment with MetaMethod.</div>
                     <!--<h2 class="discord-text"><i class="discord-marker fa-brands fa-discord"></i></i>Ruben#1234</h2>-->           
                 </section>
             </main>
             <nav>
-                <a href="https://github.com/RubenTelfer"><i class="github fa-brands fa-github"></i></a>
-                <a href="https://twitter.com/rubenntelfer"><i class="twitter fa-brands fa-twitter"></i></a>
+                <a href="https://rubentelfer.com"><i class="github fa-solid fa-backward"></i></a>
             </nav>
         </div>
     </body>
